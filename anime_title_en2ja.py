@@ -51,7 +51,7 @@ def scraper(driver,en_title):
             title = title.replace(' - Wikipedia',"")
         else:
             print('エラー:検索失敗 - ', en_title,title)
-            return en_title
+            return title
        
         # カッコの削除
         if title.find("("):
@@ -76,7 +76,7 @@ def load_pkl():
 
 def output(en2ja,name = "en2ja.pkl"):
     print("save pickle")
-    with open(name, 'ab') as f:
+    with open(name, 'wb') as f:
         pickle.dump(en2ja, f) 
 
 def first():
@@ -84,12 +84,14 @@ def first():
     cnt = 0
     for k,v in tqdm(id2anime.items()):
         en2ja[v] = scraper(driver, v)
-        time.sleep(5)
+        time.sleep(4.2)
         cnt+=1
         if cnt % 30  == 0:
             time.sleep(10)
-        if cnt % 20 == 0:
+        if cnt % 100 == 0:
             output(en2ja)
+
+    output(en2ja)
 first()
 
 #ソードアート 2がダメ
