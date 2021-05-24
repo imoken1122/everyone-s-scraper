@@ -94,4 +94,3 @@ def first():
     output(en2ja)
 first()
 
-#ソードアート 2がダメ
